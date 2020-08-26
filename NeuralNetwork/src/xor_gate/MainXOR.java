@@ -2,6 +2,13 @@ package xor_gate;
 
 import networks.NeuronBasedNeuralNetwork;
 
+/**
+ * Basic test of the neural network to see if it can learn how a XOR-gate works.
+ * 
+ * @author OdinhengeT
+ * @see NeuralNetwork
+ * @see NeuronBasedNeuralNetwork
+ */
 public class MainXOR {
 
 	public static void main(String[] args) {
@@ -18,7 +25,7 @@ public class MainXOR {
 			input = XOR.createInputData(100);
 			network.train(input, XOR.createTargetData(input));
 		}
-		
+
 		System.out.println("==With Training==");
 		System.out.println(XOR.standardDiagnostic(network));
 		System.out.println(network);

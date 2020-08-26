@@ -2,8 +2,14 @@ package xor_gate;
 
 import networks.NeuronBasedNeuralNetwork;
 
-/*
+/**
  * Contains all specific XOR-Gate related methods
+ * 
+ * @author OdinhengeT
+ * @see NeuralNetwork
+ * @see NeuronBasedNeuralNetwork
+ * @see Layer
+ * @see Neuron
  */
 public class XOR {
 
