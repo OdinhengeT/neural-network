@@ -27,8 +27,8 @@ public class Mnist {
 
 	/**
 	 * When loaded contain the test labels downloaded from the Mnist website.
-	 * Eddited so that each label is an array of size 10 and the the value at the
-	 * index of the correct number is 1.0 with the others beeing 0.0.
+	 * Edited so that each label is an array of size 10 and the the value at the
+	 * index of the correct number is 1.0 with the others being 0.0.
 	 */
 	private static double[][] testLabels = new double[1][1];
 
@@ -39,8 +39,8 @@ public class Mnist {
 
 	/**
 	 * When loaded contain the training labels downloaded from the Mnist website.
-	 * Eddited so that each label is an array of size 10 and the the value at the
-	 * index of the correct number is 1.0 with the others beeing 0.0.
+	 * Edited so that each label is an array of size 10 and the the value at the
+	 * index of the correct number is 1.0 with the others being 0.0.
 	 */
 	private static double[][] trainingLabels = new double[1][1];
 

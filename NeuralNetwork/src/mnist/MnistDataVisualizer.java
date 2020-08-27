@@ -162,7 +162,7 @@ public class MnistDataVisualizer extends JFrame {
 	 * Basic nested class used for painting the Images from the Mnist dataset into
 	 * the JFrame.
 	 * 
-	 * @author Odinshenge
+	 * @author OdinhengeT
 	 *
 	 */
 	private class Canvas extends JPanel {
@@ -172,7 +172,7 @@ public class MnistDataVisualizer extends JFrame {
 		private double[][] data;
 
 		/**
-		 * Index of the current image beeing displayed.
+		 * Index of the current image being displayed.
 		 */
 		private int index = 0;
 
