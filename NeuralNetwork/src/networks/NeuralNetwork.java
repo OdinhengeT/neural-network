@@ -40,7 +40,7 @@ public abstract class NeuralNetwork {
 	 * The NeuralNetwork is given an input vector and by passing its values through
 	 * the NeuralNetwork, calculates an output vector.
 	 * 
-	 * @param input a double[] of inputvalues (one for each InputNeuron)
+	 * @param input a double[] of input values (one for each InputNeuron)
 	 * @returns a double[] containing the output of each OutputNeuron
 	 * @throws IllegalArgumentException if nbr inputs != nbr InputNeurons
 	 */

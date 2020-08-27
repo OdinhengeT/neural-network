@@ -3,7 +3,7 @@ package neuronBasedLayers;
 import neurons.*;
 
 /**
- * This is an extension of Layer and is used as InnerLayers (Layers inbetween
+ * This is an extension of Layer and is used as InnerLayers (Layers in between
  * the first (Input) and the last (Output)) in a NeuronBasedNeuralNetwork.
  * 
  * @author OdinhengeT

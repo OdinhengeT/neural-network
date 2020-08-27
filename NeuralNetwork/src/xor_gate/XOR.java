@@ -36,7 +36,7 @@ public class XOR {
 	}
 
 	/**
-	 * Returns a String informing how well the Network handels the Standard testing
+	 * Returns a String informing how well the Network handles the Standard testing
 	 * set.
 	 * 
 	 * @param network the network to be tested
@@ -79,7 +79,7 @@ public class XOR {
 	}
 
 	/**
-	 * Returns an array of target values correspongding to the array of inputs given
+	 * Returns an array of target values corresponding to the array of inputs given
 	 * as argument.
 	 * 
 	 * @param input, a double[][] with inputs

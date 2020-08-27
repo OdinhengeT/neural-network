@@ -26,7 +26,7 @@ public class NeuronBasedNeuralNetwork extends NeuralNetwork {
 	/**
 	 * Creates a NeuronBasedNeuralNetwork with nbrLayers Layers with nbrLinks and
 	 * nbrNeurons as provided by argument. The first Layer is an InputLayer, the
-	 * last Layer is an OutputLayer and the Layers inbetween are InnerLayers.
+	 * last Layer is an OutputLayer and the Layers in between are InnerLayers.
 	 * 
 	 * @param layers an int[] with length equal to the number of Layers the Network
 	 *               should have, and values equal to the number of Neurons

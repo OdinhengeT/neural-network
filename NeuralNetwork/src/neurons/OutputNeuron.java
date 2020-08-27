@@ -26,7 +26,7 @@ public class OutputNeuron extends Neuron {
 	/**
 	 * Returns the unweighted output of this Neuron.
 	 * 
-	 * @return the Sigmoid funcotion of the sum of inputs to this Neuron
+	 * @return the Sigmoid function of the sum of inputs to this Neuron
 	 */
 	public double getOutput() {
 		return sigFun.apply(input);

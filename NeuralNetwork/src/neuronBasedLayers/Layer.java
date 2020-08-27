@@ -22,7 +22,7 @@ public abstract class Layer {
 
 	/*
 	 * Creates a Layer (Super constructor) with nbrNeurons Neurons (excluding
-	 * eventuall BiasNeurons) each with nbrLinks links.
+	 * eventual BiasNeurons) each with nbrLinks links.
 	 */
 	public Layer(int nbrNeurons, int nbrLinks) {
 		this.nbrNeurons = nbrNeurons;
@@ -47,7 +47,7 @@ public abstract class Layer {
 	}
 
 	/**
-	 * Returns the number of Neurons (excluding eventuall BiasNeurons) present in
+	 * Returns the number of Neurons (excluding eventual BiasNeurons) present in
 	 * the Layer.
 	 * 
 	 * @returns nbrNeurons the number of Neurons in the Layer
@@ -96,7 +96,7 @@ public abstract class Layer {
 	 * eventual BiasNeurons) and updates their weights with their updateWeight
 	 * method.
 	 * 
-	 * @param deltaWeights a double[][] containing all the weight nuges for each
+	 * @param deltaWeights a double[][] containing all the weight nudges for each
 	 *                     neuron in the Layer
 	 * @throws IllegalArgumentException if deltaWeights does not have the same
 	 *                                  length as the number of Neurons in the Layer

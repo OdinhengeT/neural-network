@@ -3,7 +3,7 @@ package xor_gate;
 import networks.NeuronBasedNeuralNetwork;
 
 /**
- * Tests the succsess rate of training a neural network to function as a
+ * Tests the success rate of training a neural network to function as a
  * XOR-gate.
  * 
  * @author OdinhengeT

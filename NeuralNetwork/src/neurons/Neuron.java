@@ -4,7 +4,7 @@ import java.util.function.Function;
 import java.util.Random;
 
 /**
- * This is a simple abstract class decribing a Neuron in a
+ * This is a simple abstract class describing a Neuron in a
  * NeuronBasedNeuralNetwork, and has several subclasses with different Neurons.
  * 
  * @author OdinhengeT
@@ -24,12 +24,12 @@ public abstract class Neuron {
 	protected static Function<Double, Double> sigFun = a -> 1.0 / (1.0 + Math.exp(-1 * a));
 
 	/**
-	 * Nuumber of Neurons this Neuron links to in the next layer.
+	 * Number of Neurons this Neuron links to in the next layer.
 	 */
 	protected int nbrLinks;
 
 	/**
-	 * The input this Neuron recieved from the previous layer.
+	 * The input this Neuron received from the previous layer.
 	 */
 	protected double input;
 
@@ -79,7 +79,7 @@ public abstract class Neuron {
 	}
 
 	/**
-	 * Returns the last recieved input.
+	 * Returns the last received input.
 	 * 
 	 * @returns input
 	 */
@@ -106,7 +106,7 @@ public abstract class Neuron {
 	public abstract double getOutputTo(int index);
 
 	/**
-	 * Returns the i:th elemnet in weights, the weight of the i:th link.
+	 * Returns the i:th element in weights, the weight of the i:th link.
 	 * 
 	 * @param i index of element to return
 	 */

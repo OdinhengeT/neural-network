@@ -2,7 +2,7 @@ package neurons;
 
 /**
  * This is an extension of Neuron. It is used to represent Neurons inside a
- * NeuronBasedNeuralNetwork (inbetween the input and output Layers).
+ * NeuronBasedNeuralNetwork (in between the input and output Layers).
  * 
  * @author OdinhengeT
  * @see NeuralNetwork
@@ -27,7 +27,7 @@ public class InnerNeuron extends Neuron {
 	/**
 	 * Returns the unweighted output of this Neuron.
 	 * 
-	 * @return the Sigmoid funcotion of the sum of inputs to this Neuron
+	 * @return the Sigmoid function of the sum of inputs to this Neuron
 	 */
 	public double getOutput() {
 		return sigFun.apply(input);

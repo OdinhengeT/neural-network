@@ -18,7 +18,7 @@ public class BiasNeuron extends Neuron {
 	/**
 	 * A BiasNeuron acts like a normal Neuron, but has a static input of 1.0. Thus
 	 * it is not linked to by any Neuron from the previous layer. However it is
-	 * conected to every Neuron in the next layer, just like a regular Neuron.
+	 * connected to every Neuron in the next layer, just like a regular Neuron.
 	 * 
 	 * @param nbrLinks number of Neurons this Neuron connects to in the next Layer
 	 */
@@ -27,7 +27,7 @@ public class BiasNeuron extends Neuron {
 	}
 
 	/**
-	 * Overrides the input method for Bias-Neurons, so it doesn't accedentaly get
+	 * Overrides the input method for Bias-Neurons, so it doesn't accidentally get
 	 * called.
 	 * 
 	 * @param new input, has no effect
