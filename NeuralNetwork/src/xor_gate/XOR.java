@@ -1,9 +1,9 @@
 package xor_gate;
 
-import networks.NeuronBasedNeuralNetwork;
+import networks.NeuralNetwork;
 
 /**
- * Contains all specific XOR-Gate related methods
+ * Contains all specific XOR-Gate related methods. used in a static way.
  * 
  * @author OdinhengeT
  * @see NeuralNetwork
@@ -42,7 +42,7 @@ public class XOR {
 	 * @param network the network to be tested
 	 * @returns String with results of diagnostic
 	 */
-	public static String standardDiagnostic(NeuronBasedNeuralNetwork network) {
+	public static String standardDiagnostic(NeuralNetwork network) {
 		StringBuilder sb = new StringBuilder();
 		double error = 0;
 		for (int i = 0; i < STANDARD_INPUT.length; i++) {
