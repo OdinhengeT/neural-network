@@ -7,7 +7,7 @@ public class MainMnist {
 		Mnist.load();
 		
 		new MnistDataVisualizer(Mnist.getTestImages(), Mnist.getTestLabels());
-
+		
 	}
 
 }
