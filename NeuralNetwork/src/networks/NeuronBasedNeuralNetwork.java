@@ -1,6 +1,6 @@
 package networks;
 
-import neuronBasedLayers.*;
+import layers.neuronLayers.*;
 
 /**
  * Implementation of the abstract class NeuralNetwork using instances of the
@@ -8,7 +8,7 @@ import neuronBasedLayers.*;
  * 
  * @author OdinhengeT
  * @see NeuralNetwork
- * @see Layer
+ * @see NeuronLayer
  * @see Neuron
  */
 public class NeuronBasedNeuralNetwork extends NeuralNetwork {
@@ -21,7 +21,7 @@ public class NeuronBasedNeuralNetwork extends NeuralNetwork {
 	/**
 	 * The Layers in this network
 	 */
-	private Layer[] network;
+	private NeuronLayer[] network;
 
 	/**
 	 * Creates a NeuronBasedNeuralNetwork with nbrLayers Layers with nbrLinks and
@@ -34,12 +34,12 @@ public class NeuronBasedNeuralNetwork extends NeuralNetwork {
 	 */
 	public NeuronBasedNeuralNetwork(int[] layers) {
 		super(layers.length);
-		network = new Layer[nbrLayers];
-		network[0] = new InputLayer(layers[0], layers[1]);
+		network = new NeuronLayer[nbrLayers];
+		network[0] = new InputNeuronLayer(layers[0], layers[1]);
 		for (int L = 1; L < nbrLayers - 1; L++) {
-			network[L] = new InnerLayer(layers[L], layers[L + 1]);
+			network[L] = new InnerNeuronLayer(layers[L], layers[L + 1]);
 		}
-		network[nbrLayers - 1] = new OutputLayer(layers[nbrLayers - 1]);
+		network[nbrLayers - 1] = new OutputNeuronLayer(layers[nbrLayers - 1]);
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class NeuronBasedNeuralNetwork extends NeuralNetwork {
 	 * 
 	 * @returns network Layer[] with the Networks Layers.
 	 */
-	public Layer[] getLayers() {
+	public NeuronLayer[] getLayers() {
 		return network;
 	}
 
@@ -63,9 +63,9 @@ public class NeuronBasedNeuralNetwork extends NeuralNetwork {
 		if (input.length != network[0].getNbrNeurons()) {
 			throw new IllegalArgumentException("Network input of incorrect dimension");
 		}
-		for (int L = 0; L < nbrLayers; L++) { // Loopar igenom nätverkets lager.
-			network[L].input(input); // inputar input till lager L.
-			input = network[L].getOutput(); // sätter input till outputen av lager L.
+		for (int L = 0; L < nbrLayers; L++) {
+			network[L].input(input); 
+			input = network[L].getOutput(); 
 		}
 		return network[nbrLayers - 1].getOutput();
 	}
@@ -172,7 +172,7 @@ public class NeuronBasedNeuralNetwork extends NeuralNetwork {
 	 */
 	public String toString() {
 		StringBuilder sb = new StringBuilder("==Network==");
-		for (Layer l : network) {
+		for (NeuronLayer l : network) {
 			sb.append(System.lineSeparator());
 			sb.append(l.toString());
 		}

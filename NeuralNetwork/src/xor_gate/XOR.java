@@ -8,7 +8,7 @@ import networks.NeuralNetwork;
  * @author OdinhengeT
  * @see NeuralNetwork
  * @see NeuronBasedNeuralNetwork
- * @see Layer
+ * @see NeuronLayer
  * @see Neuron
  */
 public class XOR {

@@ -7,7 +7,7 @@ package neurons;
  * @author OdinhengeT
  * @see NeuralNetwork
  * @see NeuronBasedNeuralNetwork
- * @see Layer
+ * @see NeuronLayer
  * @see BiasNeuron
  * @see InputNeuron
  * @see InnerNeuron
