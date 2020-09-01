@@ -1,4 +1,4 @@
-package neuronBasedLayers;
+package layers.neuronLayers;
 
 import neurons.*;
 
@@ -9,12 +9,12 @@ import neurons.*;
  * @author OdinhengeT
  * @see NeuralNetwork
  * @see NeuronBasedNeuralNetwork
- * @see Layer
- * @see InputLayer
- * @see InnerLayer
+ * @see NeuronLayer
+ * @see InputNeuronLayer
+ * @see InnerNeuronLayer
  * @see Neuron
  */
-public class OutputLayer extends Layer {
+public class OutputNeuronLayer extends NeuronLayer {
 
 	/**
 	 * Creates an OutputLayer with nbrNeurons Neurons (an OutputLayer has no
@@ -22,7 +22,7 @@ public class OutputLayer extends Layer {
 	 * 
 	 * @param nbrNeurons number of Neurons in Layer
 	 */
-	public OutputLayer(int nbrNeurons) {
+	public OutputNeuronLayer(int nbrNeurons) {
 		super(nbrNeurons, 0);
 		neurons = new Neuron[nbrNeurons];
 		for (int i = 0; i < neurons.length; i++) {

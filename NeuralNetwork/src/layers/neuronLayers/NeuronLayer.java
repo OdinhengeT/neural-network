@@ -1,4 +1,4 @@
-package neuronBasedLayers;
+package layers.neuronLayers;
 
 import neurons.*;
 
@@ -9,12 +9,12 @@ import neurons.*;
  * @author OdinhengeT
  * @see NeuralNetwork
  * @see NeuronBasedNeuralNetwork
- * @see InputLayer
- * @see InnerLayer
- * @see OutputLayer
+ * @see InputNeuronLayer
+ * @see InnerNeuronLayer
+ * @see OutputNeuronLayer
  * @see Neuron
  */
-public abstract class Layer {
+public abstract class NeuronLayer {
 
 	protected Neuron[] neurons;
 	protected int nbrNeurons;
@@ -24,7 +24,7 @@ public abstract class Layer {
 	 * Creates a Layer (Super constructor) with nbrNeurons Neurons (excluding
 	 * eventual BiasNeurons) each with nbrLinks links.
 	 */
-	public Layer(int nbrNeurons, int nbrLinks) {
+	public NeuronLayer(int nbrNeurons, int nbrLinks) {
 		this.nbrNeurons = nbrNeurons;
 		this.nbrLinks = nbrLinks;
 	}
