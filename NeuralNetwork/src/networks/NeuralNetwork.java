@@ -1,60 +1,67 @@
 package networks;
 
-import java.util.function.Function;
-
 /**
- * This is an abstract class containing the basic functions and abstract methods
- * needed in a NeuralNetwork.
+ * This is an interface containing the basic abstract methods
+ * needed in order to operate a NeuralNetwork. The class supports using either
+ * floats or doubles (java primitives) as the basic calculation unit.
  * 
  * @author OdinhengeT
  * @see NeuronBasedNeuralNetwork
- * @see MatrixBasedNeuralNetwork
+ * @see NeuralNetworkF
  */
-public abstract class NeuralNetwork {
+public interface NeuralNetwork {
 
+	public abstract char getBasicCalculationUnit();
+	
 	/**
-	 * Non-Linear function (Sigmoid function) applied on the inputs of neurons.
-	 */
-	protected static Function<Double, Double> sigFun = a -> 1.0 / (1.0 + Math.exp(-1 * a));
-
-	/**
-	 * Derivative of the non-Linear function (Sigmoid function)..
-	 */
-	protected static Function<Double, Double> DsigFun = a -> sigFun.apply(a) * (1 - sigFun.apply(a));
-
-	/**
-	 * Number of Layers in this Network
-	 */
-	protected int nbrLayers;
-
-	/**
-	 * Creates a NeuralNetwork (abstract, only used as super constructor).
+	 * The NeuralNetwork is given an input vector (double), and calculates an output
+	 * vector (double) by passing its values through the NeuralNetwork.
 	 * 
-	 * @param nbrLayers number of Layers in the NeuralNetwork
-	 */
-	public NeuralNetwork(int nbrLayers) {
-		this.nbrLayers = nbrLayers;
-	}
-
-	/**
-	 * The NeuralNetwork is given an input vector and by passing its values through
-	 * the NeuralNetwork, calculates an output vector.
-	 * 
-	 * @param input a double[] of input values (one for each InputNeuron)
-	 * @returns a double[] containing the output of each OutputNeuron
+	 * @param input a double[] of input values to the NeuralNetwork
+	 * @returns a double[] containing the output of the NeuralNetwork
 	 * @throws IllegalArgumentException if nbr inputs != nbr InputNeurons
+	 * @throws IllegalCallerException   if the NeuralNetwork doesn't accept inputs
+	 *                                  of type double
 	 */
 	public abstract double[] run(double[] input);
 
 	/**
-	 * Trains the network with multiple inputs (each being a vector) and their
-	 * corresponding targets (also one vector each).
+	 * The NeuralNetwork is given an input vector (float), and calculates an output
+	 * vector (float) by passing its values through the NeuralNetwork.
 	 * 
-	 * @param input  multiple input vectors put together in an array
-	 * @param target multiple target vectors corresponding to those in input
+	 * @param input a float[] of input values to the NeuralNetwork
+	 * @returns a float[] containing the output of the NeuralNetwork
+	 * @throws IllegalArgumentException if nbr inputs != nbr InputNeurons
+	 * @throws IllegalCallerException   if the NeuralNetwork doesn't accept inputs
+	 *                                  of type float
+	 */
+	public abstract float[] run(float[] input);
+
+	/**
+	 * Trains the network with multiple vector inputs (double) and their
+	 * corresponding target vectors (double).
+	 * 
+	 * @param input,  multiple vector inputs (double) gathered in an array
+	 * @param target, multiple vector targets (double) corresponding to the input
+	 *                vectors in input
 	 * @throws IllegalArgumentException if input and target are of different length
+	 * @throws IllegalCallerException   if the NeuralNetwork doesn't accept inputs
+	 *                                  of type double
 	 */
 	public abstract void train(double[][] input, double[][] target);
+
+	/**
+	 * Trains the network with multiple vector inputs (float) and their
+	 * corresponding target vectors (float).
+	 * 
+	 * @param input,  multiple vector inputs (float) gathered in an array
+	 * @param target, multiple vector targets (float) corresponding to the input
+	 *                vectors in input
+	 * @throws IllegalArgumentException if input and target are of different length
+	 * @throws IllegalCallerException   if the NeuralNetwork doesn't accept inputs
+	 *                                  of type float
+	 */
+	public abstract void train(float[][] input, float[][] target);
 
 	/**
 	 * Returns a String representation of the NeuralNetwork.
