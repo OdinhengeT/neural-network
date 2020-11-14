@@ -60,6 +60,7 @@ public class MnistFileReader {
 			}
 		} else if (nbrDimensions == 3) {
 			result = new float[nbrItems][dataInputStream.readInt() * dataInputStream.readInt()];
+			System.out.println(result[0].length);
 			for (int i = 0; i < nbrItems; i++) {
 				for (int j = 0; j < result[0].length; j++) {
 					result[i][j] = (float) dataInputStream.readUnsignedByte();

@@ -3,6 +3,17 @@ package applications.xor_gate;
 import applications.Application;
 import networks.NeuralNetwork;
 
+/**
+ * Implementation of Application, contains basic methods needed to train a
+ * NeuralNetwork on a XOR Gate.
+ * 
+ * @author OdinhengeT
+ * @date 14th November 2020
+ * @see AppliedNetwork
+ * @see Application
+ * @see NeuralNetwork
+ * @see XorGateDataGenerator
+ */
 public class XorGate extends Application {
 
 	private static final float[][] INPUT_QD_F = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 0.0f, 1.0f }, { 1.0f, 1.0f } };
@@ -33,14 +44,14 @@ public class XorGate extends Application {
 		TrainingData[1] = XorGateDataGenerator.generateTargetD(TrainingData[0]);
 		return TrainingData;
 	}
-	
+
 	public float[][][] getEvaluationDataF() {
 		float[][][] EvaluationData = new float[2][1][1];
 		EvaluationData[0] = INPUT_QD_F;
 		EvaluationData[1] = XorGateDataGenerator.generateTargetF(INPUT_QD_F);
 		return EvaluationData;
 	}
-	
+
 	public double[][][] getEvaluationDataD() {
 		double[][][] EvaluationData = new double[2][1][1];
 		EvaluationData[0] = INPUT_QD_D;

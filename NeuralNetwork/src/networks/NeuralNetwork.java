@@ -1,18 +1,19 @@
 package networks;
 
 /**
- * This is an interface containing the basic abstract methods
- * needed in order to operate a NeuralNetwork. The class supports using either
- * floats or doubles (java primitives) as the basic calculation unit.
+ * This is an interface containing the basic abstract methods needed in order to
+ * operate a NeuralNetwork. It supports using either float or double
+ * (java primitives) as the basic calculation unit.
  * 
  * @author OdinhengeT
- * @see NeuronBasedNeuralNetwork
+ * @date 14th November 2020
  * @see NeuralNetworkF
+ * @see NeuralNetworkD
  */
 public interface NeuralNetwork {
 
 	public abstract char getBasicCalculationUnit();
-	
+
 	/**
 	 * The NeuralNetwork is given an input vector (double), and calculates an output
 	 * vector (double) by passing its values through the NeuralNetwork.

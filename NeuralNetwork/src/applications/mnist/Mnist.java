@@ -5,10 +5,13 @@ import applications.Application;
 import networks.NeuralNetwork;
 
 /**
- * Contains basic methods needed to use the Mnist dataset for training a
- * NeuralNetwork.
+ * Implementation of Application, contains basic methods needed to train a
+ * NeuralNetwork on the Mnist dataset of handwritten digits.
  * 
  * @author OdinhengeT
+ * @date 14th November 2020
+ * @see AppliedNetwork
+ * @see Application
  * @see NeuralNetwork
  * @see MnistFileReader
  * @see MnistDataVisualizer
@@ -117,67 +120,74 @@ public class Mnist extends Application {
 	}
 
 	/**
-	 * Returns the collection of trainig images and labels (downloaded from the
-	 * Mnist website) as a float[][][], first index: 0 for images 1 for labels;
-	 * second index corresponds to which set of trainingData; the images and labels
-	 * have been vectorized, so the thrid index corresponds to a specific entry of
-	 * the labe/image.
+	 * Returns a collection of nbrSets sets of trainig images and labels (downloaded
+	 * from the Mnist website) as a double[][][], first index: 0 for images 1 for
+	 * labels; second index corresponds to which set of trainingData; the images and
+	 * labels have been vectorized, so the thrid index corresponds to a specific
+	 * entry of the labe/image. The method returns the next nbrSets sets of training
+	 * data (it keeps track)
 	 * 
 	 * @return The collection of training images & labels from Mnist (as read by
 	 *         MnistFileReader)
 	 * @throws IllegalCallerException if the data hasn't already been loaded
 	 */
-	public float[][][] getTrainingDataF(int nbrInputs) {
+	public float[][][] getTrainingDataF(int nbrSets) {
 		if (!isDataLoaded) {
 			throw new IllegalCallerException(
 					"Data has not yet been Loaded, make sure the data is loaded before proceeding");
 		}
-		int temp = 0;
-		float[][][] trainingData = new float[2][nbrInputs][1];
-		for (int i = 0; i < nbrInputs; i++) {
-			if (offset + i < trainingLabelsF.length) {
-				trainingData[0][i] = trainingImagesF[offset + i];
-				trainingData[1][i] = trainingLabelsF[offset + i];
-			} else {
-				offset = 0;
-				temp = i;
+		float[][][] trainingData = new float[2][nbrSets][1];
+		for (int set = 0; set < nbrSets; set++) {
+			if (offset + set >= trainingLabelsF.length) {
+				offset = -1 * set;
 			}
+			trainingData[0][set] = trainingImagesF[offset + set];
+			trainingData[1][set] = trainingLabelsF[offset + set];
 		}
-		offset = offset + nbrInputs - temp;
+		offset += nbrSets;
 		return trainingData;
 	}
 
 	/**
-	 * Returns the collection of trainig images and labels (downloaded from the
-	 * Mnist website) as a double[][][], first index: 0 for images 1 for labels;
-	 * second index corresponds to which set of trainingData; the images and labels
-	 * have been vectorized, so the thrid index corresponds to a specific entry of
-	 * the labe/image.
+	 * Returns a collection of nbrSets sets of trainig images and labels (downloaded
+	 * from the Mnist website) as a double[][][], first index: 0 for images 1 for
+	 * labels; second index corresponds to which set of trainingData; the images and
+	 * labels have been vectorized, so the thrid index corresponds to a specific
+	 * entry of the labe/image. The method returns the next nbrSets sets of training
+	 * data (it keeps track)
 	 * 
 	 * @return The collection of training images & labels from Mnist (as read by
 	 *         MnistFileReader)
 	 * @throws IllegalCallerException if the data hasn't already been loaded
 	 */
-	public double[][][] getTrainingDataD(int nbrInputs) {
+	public double[][][] getTrainingDataD(int nbrSets) {
 		if (!isDataLoaded) {
 			throw new IllegalCallerException(
 					"Data has not yet been Loaded, make sure the data is loaded before proceeding");
 		}
-		int temp = 0;
-		double[][][] trainingData = new double[2][nbrInputs][1];
-		for (int i = 0; i < nbrInputs; i++) {
-			if (offset + i < trainingLabelsF.length) {
-				trainingData[0][i] = trainingImagesD[offset + i];
-				trainingData[1][i] = trainingLabelsD[offset + i];
-			} else {
-				offset = 0;
-				temp = i;
+		double[][][] trainingData = new double[2][nbrSets][1];
+		for (int set = 0; set < nbrSets; set++) {
+			if (offset + set >= trainingLabelsD.length) {
+				offset = -1 * set;
 			}
+			trainingData[0][set] = trainingImagesD[offset + set];
+			trainingData[1][set] = trainingLabelsD[offset + set];
 		}
-		offset = offset + nbrInputs - temp;
+		offset += nbrSets;
 		return trainingData;
 	}
 
+	/**
+	 * Returns the collection of Evaluation images and labels (downloaded from the
+	 * Mnist website) as a float[][][], first index: 0 for images 1 for labels;
+	 * second index corresponds to which set of evaluationData; the images and
+	 * labels have been vectorized, so the thrid index corresponds to a specific
+	 * entry of the labe/image.
+	 * 
+	 * @return The collection of evaluation images & labels from Mnist (as read by
+	 *         MnistFileReader)
+	 * @throws IllegalCallerException if the data hasn't already been loaded
+	 */
 	public float[][][] getEvaluationDataF() {
 		if (!isDataLoaded) {
 			throw new IllegalCallerException(
@@ -189,6 +199,17 @@ public class Mnist extends Application {
 		return evaluationData;
 	}
 
+	/**
+	 * Returns the collection of Evaluation images and labels (downloaded from the
+	 * Mnist website) as a double[][][], first index: 0 for images 1 for labels;
+	 * second index corresponds to which set of evaluationData; the images and
+	 * labels have been vectorized, so the thrid index corresponds to a specific
+	 * entry of the labe/image.
+	 * 
+	 * @return The collection of evaluation images & labels from Mnist (as read by
+	 *         MnistFileReader)
+	 * @throws IllegalCallerException if the data hasn't already been loaded
+	 */
 	public double[][][] getEvaluationDataD() {
 		if (!isDataLoaded) {
 			throw new IllegalCallerException(
@@ -243,7 +264,7 @@ public class Mnist extends Application {
 	}
 
 	/**
-	 * Tests a NeuralNetwork using the Evaluation data and returns a String
+	 * Evaluates a NeuralNetwork using the Evaluation data and returns a String
 	 * containing the results of the diagnostic.
 	 * 
 	 * @param network the NeuralNetwork to run the diagnostic on
@@ -266,10 +287,10 @@ public class Mnist extends Application {
 			}
 
 		}
-		meanError /= evaluationLabelsF.length;
+		meanError /= evaluationLabelsD.length;
 		sb.append("Mean Error: " + meanError + System.lineSeparator());
 		sb.append("Index:   Target:   Output:" + System.lineSeparator());
-		int randomIndex = (int) (Math.random() * evaluationImagesF.length);
+		int randomIndex = (int) (Math.random() * evaluationImagesD.length);
 		result = network.run(evaluationImagesD[randomIndex]);
 		for (int i = 0; i < 10; i++) {
 			sb.append("  " + i + "        " + evaluationLabelsD[randomIndex][i] + "       " + result[i]
@@ -285,6 +306,15 @@ public class Mnist extends Application {
 		return sb.toString();
 	}
 
+	/**
+	 * Evaluates a NeuralNetwork using the Evaluation data and returns a String
+	 * containing the results of the diagnostic. Might be more usefull for large
+	 * Applications where a regular diagnostic may be slow.
+	 * 
+	 * @param network the NeuralNetwork to run the diagnostic on
+	 * @return a String containing the results of the diagnostic
+	 * @throws IllegalCallerException if the data hasn't already been loaded
+	 */
 	public String runQuickDiagnosticF(NeuralNetwork network) {
 		if (!isDataLoaded) {
 			throw new IllegalCallerException(
@@ -299,30 +329,39 @@ public class Mnist extends Application {
 		float[][] results = new float[10][1];
 		float[][] displayImages = new float[10][1];
 		float[][] displayLabels = new float[10][1];
-		
+
 		for (int set = 0; set < 10; set++) {
 			results[set] = network.run(evaluationImagesF[set]);
 			evaluatedSets.append("    Set " + set + ": Index:  Target:  Output:" + System.lineSeparator());
 			for (int i = 0; i < results[set].length; i++) {
 				meanError += Math.abs(results[set][i] - evaluationLabelsF[set][i]) / 10;
 
-				evaluatedSets.append("           " + i + "       " + evaluationLabelsF[set][i] + "      " + results[set][i]
-						+ System.lineSeparator());
+				evaluatedSets.append("           " + i + "       " + evaluationLabelsF[set][i] + "      "
+						+ results[set][i] + System.lineSeparator());
 			}
 			displayImages[set] = evaluationImagesF[set];
 			displayLabels[set] = evaluationLabelsF[set];
 		}
-		
-		//new MnistDataVisualizer(displayImages, displayLabels, results);
-		
+
+		// new MnistDataVisualizer(displayImages, displayLabels, results);
+
 		info.append("  Info:" + System.lineSeparator());
 		info.append("    Mean Error: " + meanError + System.lineSeparator());
-		
+
 		main.append(info);
 		main.append(evaluatedSets);
 		return main.toString();
 	}
 
+	/**
+	 * Evaluates a NeuralNetwork using the Evaluation data and returns a String
+	 * containing the results of the diagnostic. Might be more usefull for large
+	 * Applications where a regular diagnostic may be slow.
+	 * 
+	 * @param network the NeuralNetwork to run the diagnostic on
+	 * @return a String containing the results of the diagnostic
+	 * @throws IllegalCallerException if the data hasn't already been loaded
+	 */
 	public String runQuickDiagnosticD(NeuralNetwork network) {
 		if (!isDataLoaded) {
 			throw new IllegalCallerException(
@@ -337,25 +376,25 @@ public class Mnist extends Application {
 		double[][] results = new double[10][1];
 		double[][] displayImages = new double[10][1];
 		double[][] displayLabels = new double[10][1];
-		
+
 		for (int set = 0; set < 10; set++) {
 			results[set] = network.run(evaluationImagesD[set]);
 			evaluatedSets.append("  Set " + set + ": Index:  Target:  Output:" + System.lineSeparator());
 			for (int i = 0; i < results[set].length; i++) {
 				meanError += Math.abs(results[set][i] - evaluationLabelsD[set][i]) / 10;
 
-				evaluatedSets.append("         " + i + "       " + evaluationLabelsD[set][i] + "      " + results[set][i]
-						+ System.lineSeparator());
+				evaluatedSets.append("         " + i + "       " + evaluationLabelsD[set][i] + "      "
+						+ results[set][i] + System.lineSeparator());
 			}
 			displayImages[set] = evaluationImagesD[set];
 			displayLabels[set] = evaluationLabelsD[set];
 		}
-		
+
 		new MnistDataVisualizer(displayImages, displayLabels, results);
-		
+
 		info.append("Info:" + System.lineSeparator());
 		info.append("  Mean Error: " + meanError + System.lineSeparator());
-		
+
 		main.append(info);
 		main.append(evaluatedSets);
 		return main.toString();

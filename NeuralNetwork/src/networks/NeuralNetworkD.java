@@ -8,27 +8,23 @@ import layers.double_based.*;
  * Uses double as basic calculation unit.
  * 
  * @author OdinhengeT
+ * @date 14th November 2020
+ * @see NeuralNetwork
  * @see NeuralNetworkF
  * @see LayerD
  */
 public class NeuralNetworkD implements NeuralNetwork {
 
 	/**
-	 * The Sigmoid function (Float to Float).
+	 * The Sigmoid function, used as the non-linear activation function.
 	 */
 	protected static final Function<Double, Double> sigmoidFunction = a -> 1.0 / (1.0 + Math.exp(-1 * a));
 
 	/**
-	 * Derivative of the Sigmoid function (Float to Float).
+	 * Derivative of the Sigmoid function (above).
 	 */
 	protected static final Function<Double, Double> derivedSigmoidFunction = a -> sigmoidFunction.apply(a)
 			* (1 - sigmoidFunction.apply(a));
-
-	/**
-	 * Keeps track of which java primitive is used for calucaltions in this
-	 * NeuralNetwork
-	 */
-	private final char BASIC_CALCULATION_UNIT = 'd';
 	
 	/**
 	 * The rate of learning of the network
@@ -36,12 +32,12 @@ public class NeuralNetworkD implements NeuralNetwork {
 	private double learningRate;
 
 	/**
-	 * Number of Layers in this Network
+	 * Number of layers and neurons per Layer in this Network
 	 */
 	protected int[] layerStruct;
 
 	/**
-	 * The Layers in the NeuralNetwork.
+	 * The layers (LayerD) in the NeuralNetwork.
 	 */
 	private LayerD[] network;
 
@@ -75,7 +71,7 @@ public class NeuralNetworkD implements NeuralNetwork {
 	 * @return 'd'
 	 */
 	public char getBasicCalculationUnit() {
-		return BASIC_CALCULATION_UNIT;
+		return 'd';
 	}
 
 	/**
@@ -144,14 +140,12 @@ public class NeuralNetworkD implements NeuralNetwork {
 
 				for (int link = 0; link < layerStruct[layer + 1]; link++) {
 					for (int neuron = 0; neuron < layerStruct[layer]; neuron++) {
-
 						tempBias[0][neuron] += tempBias[1][link] * network[layer].getWeightAt(link, neuron)
 								* derivedSigmoidFunction.apply(network[layer].getInputTo(neuron));
 
 						deltaWeights[layer][link][neuron] -= tempBias[1][link]
 								* sigmoidFunction.apply(network[layer].getInputTo(neuron)) * learningRate
 								/ nbrTrainingSets;
-
 					}
 					deltaBias[layer][link] -= tempBias[1][link] * learningRate / nbrTrainingSets;
 				}
@@ -172,7 +166,7 @@ public class NeuralNetworkD implements NeuralNetwork {
 	 * @throws IllegalCallerException when called
 	 */
 	public float[] run(float[] input) {
-		throw new IllegalCallerException("");
+		throw new IllegalCallerException();
 	}
 
 	/**
@@ -182,7 +176,7 @@ public class NeuralNetworkD implements NeuralNetwork {
 	 * @throws IllegalCallerException when called
 	 */
 	public void train(float[][] input, float[][] target) {
-		throw new IllegalCallerException("");
+		throw new IllegalCallerException();
 	}
 	
 	/**
