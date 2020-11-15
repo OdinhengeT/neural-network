@@ -1,12 +1,20 @@
 package applications.xor_gate;
 
+/**
+ * An abstract class to hold a few static methods for generating trainingdata
+ * for a NeuralNetwork in the Xor Gate Application.
+ * 
+ * @author OdinhengeT
+ * @date 14th November 2020
+ * @see XorGate
+ *
+ */
 public abstract class XorGateDataGenerator {
 
 	/**
-	 * Returns an array of randomly created inputs of size length.
+	 * Returns an array of randomly created inputs (float) of size length.
 	 * 
 	 * @param length the desired amount of inputs in the array
-	 * 
 	 * @returns an array with length different inputs (randomly created)
 	 */
 	public static float[][] generateInputF(int length) {
@@ -30,7 +38,6 @@ public abstract class XorGateDataGenerator {
 	 * as argument.
 	 * 
 	 * @param input, a float[][] with inputs
-	 * 
 	 * @returns a float[][] with targets corresponding to the give input
 	 */
 	public static float[][] generateTargetF(float[][] input) {
@@ -44,12 +51,11 @@ public abstract class XorGateDataGenerator {
 		}
 		return target;
 	}
-	
+
 	/**
-	 * Returns an array of randomly created inputs of size length.
+	 * Returns an array of randomly created inputs (double) of size length.
 	 * 
 	 * @param length the desired amount of inputs in the array
-	 * 
 	 * @returns an array with length different inputs (randomly created)
 	 */
 	public static double[][] generateInputD(int length) {
@@ -73,7 +79,6 @@ public abstract class XorGateDataGenerator {
 	 * as argument.
 	 * 
 	 * @param input, a double[][] with inputs
-	 * 
 	 * @returns a double[][] with targets corresponding to the give input
 	 */
 	public static double[][] generateTargetD(double[][] input) {
@@ -87,5 +92,5 @@ public abstract class XorGateDataGenerator {
 		}
 		return target;
 	}
-	
+
 }

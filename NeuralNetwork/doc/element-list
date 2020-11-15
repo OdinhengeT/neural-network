@@ -1,4 +1,11 @@
+applications
+applications.mnist
+applications.xor_gate
+layers
+layers.double_based
+layers.float_based
 networks
-neuronBasedLayers
-neurons
-xor_gate
+neuron_based
+neuron_based.layers
+neuron_based.neurons
+neuron_based.xor_gate

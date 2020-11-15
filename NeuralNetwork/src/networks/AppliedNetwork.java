@@ -56,7 +56,7 @@ public class AppliedNetwork {
 	}
 
 	/**
-	 * Trains the network on the problem defined by teh application (usecase), and
+	 * Trains the network on the problem defined by the application (usecase), and
 	 * does so with nbrTrainingsets sets of training data at a time.
 	 * 
 	 * @param nbrTrainingSets number of sets of trainig data to go through before
