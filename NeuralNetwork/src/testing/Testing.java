@@ -1,7 +1,6 @@
 package testing;
 
 import networks.*;
-import applications.xor_gate.*;
 import applications.mnist.*;
 
 public class Testing {
@@ -12,9 +11,8 @@ public class Testing {
 
 		AppliedNetwork network = new AppliedNetwork(new NeuralNetworkD(layers, 0.8), new Mnist());
 
-		for (int i = 0; i < 10000; i++) {
-			network.train(50);
-		}
+		network.train(10000, 50);
+
 		System.out.println(network.runQuickDiagnostic());
 
 	}

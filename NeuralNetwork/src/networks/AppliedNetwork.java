@@ -57,18 +57,22 @@ public class AppliedNetwork {
 
 	/**
 	 * Trains the network on the problem defined by the application (usecase), and
-	 * does so with nbrTrainingsets sets of training data at a time.
+	 * does so nbrRounds time with nbrSetsPerRound sets of training data each round.
 	 * 
 	 * @param nbrTrainingSets number of sets of trainig data to go through before
 	 *                        updating the weights & biases
 	 */
-	public void train(int nbrTrainingSets) {
+	public void train(int nbrRounds, int nbrSetsPerRound) {
 		if (network.getBasicCalculationUnit() == 'f') {
-			float[][][] trainingData = application.getTrainingDataF(nbrTrainingSets);
-			network.train(trainingData[0], trainingData[1]);
+			for (int round = 0; round < nbrRounds; round++) {
+				float[][][] trainingData = application.getTrainingDataF(nbrSetsPerRound);
+				network.train(trainingData[0], trainingData[1]);
+			}
 		} else if (network.getBasicCalculationUnit() == 'd') {
-			double[][][] trainingData = application.getTrainingDataD(nbrTrainingSets);
-			network.train(trainingData[0], trainingData[1]);
+			for (int round = 0; round < nbrRounds; round++) {
+				double[][][] trainingData = application.getTrainingDataD(nbrSetsPerRound);
+				network.train(trainingData[0], trainingData[1]);
+			}
 		} else {
 			throw new IllegalArgumentException("The NeuralNetwork uses no known basic calculation unit.");
 		}

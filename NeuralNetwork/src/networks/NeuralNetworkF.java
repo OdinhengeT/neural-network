@@ -16,15 +16,17 @@ import layers.float_based.*;
 public class NeuralNetworkF implements NeuralNetwork {
 
 	/**
-	 * The Sigmoid function, used as the non-linear activation function.
+	 * The non-linear activation function, in this implementation the Sigmoid
+	 * function is used.
 	 */
-	protected static final Function<Float, Float> sigmoidFunction = a -> 1.0f / (1.0f + (float) Math.exp(-1 * a));
+	protected static final Function<Float, Float> activationFunction = a -> 1.0f / (1.0f + (float) Math.exp(-1 * a));
 
 	/**
-	 * Derivative of the Sigmoid function (above).
+	 * Derivative of the activation function, in this implementation the derivative
+	 * of the Sigmoid function..
 	 */
-	protected static final Function<Float, Float> derivedSigmoidFunction = a -> sigmoidFunction.apply(a)
-			* (1 - sigmoidFunction.apply(a));
+	protected static final Function<Float, Float> derivativeOfActivationFunction = a -> activationFunction.apply(a)
+			* (1 - activationFunction.apply(a));
 
 	/**
 	 * The rate of learning of the network
@@ -111,8 +113,8 @@ public class NeuralNetworkF implements NeuralNetwork {
 		int nbrTrainingSets = input.length;
 		float[] result = new float[layerStruct[layerStruct.length - 1]];
 
-		float[][][] deltaWeights = new float[layerStruct.length][1][1];
-		float[][] deltaBias = new float[layerStruct.length][1];
+		float[][][] deltaWeights = new float[layerStruct.length - 1][1][1];
+		float[][] deltaBias = new float[layerStruct.length - 1][1];
 		for (int layer = 0; layer < layerStruct.length - 1; layer++) {
 			deltaWeights[layer] = new float[layerStruct[layer + 1]][layerStruct[layer]];
 			deltaBias[layer] = new float[layerStruct[layer + 1]];
@@ -132,7 +134,7 @@ public class NeuralNetworkF implements NeuralNetwork {
 			tempBias[1] = new float[target[trainingSet].length];
 			for (int neuron = 0; neuron < target[trainingSet].length; neuron++) {
 				tempBias[1][neuron] = (result[neuron] - target[trainingSet][neuron])
-						* derivedSigmoidFunction.apply(network[layerStruct.length - 1].getInputTo(neuron));
+						* derivativeOfActivationFunction.apply(network[layerStruct.length - 1].getInputTo(neuron));
 			}
 
 			for (int layer = layerStruct.length - 2; layer >= 0; layer--) {
@@ -141,10 +143,10 @@ public class NeuralNetworkF implements NeuralNetwork {
 				for (int link = 0; link < layerStruct[layer + 1]; link++) {
 					for (int neuron = 0; neuron < layerStruct[layer]; neuron++) {
 						tempBias[0][neuron] += tempBias[1][link] * network[layer].getWeightAt(link, neuron)
-								* derivedSigmoidFunction.apply(network[layer].getInputTo(neuron));
+								* derivativeOfActivationFunction.apply(network[layer].getInputTo(neuron));
 
 						deltaWeights[layer][link][neuron] -= tempBias[1][link]
-								* sigmoidFunction.apply(network[layer].getInputTo(neuron)) * learningRate
+								* activationFunction.apply(network[layer].getInputTo(neuron)) * learningRate
 								/ nbrTrainingSets;
 					}
 					deltaBias[layer][link] -= tempBias[1][link] * learningRate / nbrTrainingSets;
